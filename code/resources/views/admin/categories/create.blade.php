@@ -1,0 +1,20 @@
+@extends('layouts.admin')
+@section('content')
+<div class="offset-2 col-8">
+    <br>
+    <h2>Добавить категорию</h2>
+    @include('inc.message')
+    <form method="post" action="{{ route('admin.categories.store', ['status=1']) }}">
+        @csrf
+        <div class="form-group">
+            <label for="title" @error('title') style="color:red" @enderror>Заголовок</label>
+            <input type="text" class="form-control" name="title" id="title" value="{{ old('title') }}">
+        </div>
+        <div class="form-group">
+            <label for="description" @error('description') style="color:red" @enderror>Описание</label>
+            <textarea class="form-control" name="description" id="description">{!! old('description') !!}</textarea>
+        </div><br>
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+    </form>
+</div>
+@endsection
